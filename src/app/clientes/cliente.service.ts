@@ -7,7 +7,6 @@ import swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { DatePipe, formatDate } from '@angular/common';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +15,7 @@ export class ClienteService {
   private urlEndPoint: string = 'http://localhost:8080/api/clientes';
   private httpHeaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
   getClientes(): Observable<Cliente[]> {
     //return of(CLIENTES);
@@ -25,9 +24,9 @@ export class ClienteService {
         let clientes = response as Cliente[];
         return clientes.map(cliente => {
           cliente.nombre = cliente.nombre.toUpperCase();
-          let datePipe = new DatePipe('en-US');
+          let datePipe = new DatePipe('es-MX');
           //formatDate(cliente.createAt, 'dd-MM-yyyy', 'en-US');
-          cliente.createAt = datePipe.transform(cliente.createAt, 'dd/MM/yyyy') || '';
+          cliente.createAt = datePipe.transform(cliente.createAt, 'EEEE dd, MMMM yyyy') || '';
           return cliente;
         });
       })
