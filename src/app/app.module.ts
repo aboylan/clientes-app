@@ -13,6 +13,7 @@ import { FormComponent } from './clientes/form.component';
 import { FormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 import localeMX from '@angular/common/locales/es-MX';
+import { LOCALE_ID } from '@angular/core';
 
 registerLocaleData(localeMX, 'es-MX');
 
@@ -39,7 +40,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [ClienteService],
+  providers: [ClienteService, {provide: LOCALE_ID, useValue: 'es-MX' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
